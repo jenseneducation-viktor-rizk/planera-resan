@@ -12,14 +12,10 @@ export default new Vuex.Store({
       lat: ""
     },
     nearbyStations: [],
-    departures: []
+    departures: [],
+    transOptions: 240
   },
   mutations: {
-    saveLocation(state, pos){
-      console.log(pos)
-      state.myPosition.lat = pos.latitude
-      state.myPosition.long = pos.longitude
-    },
     saveStations(state, stations) {
       state.nearbyStations = stations
       console.log(stations)
@@ -27,13 +23,17 @@ export default new Vuex.Store({
     showDepartures(state, departures) {
       state.departures = departures
       console.log(departures)
+    },
+    saveTrans(state, value) {
+      state.transOptions = value
+      console.log(value)
     }
   },
   actions: {
-    async getPos({commit, dispatch}){
+    async getPos({dispatch}){
       try {
         let currentPos = await dispatch("fetchPos")
-        commit("saveLocation", currentPos.coords)
+        dispatch("getNearbyStations", currentPos.coords)
       } catch(error) {
         console.error(error)
       }
@@ -43,8 +43,8 @@ export default new Vuex.Store({
         navigator.geolocation.getCurrentPosition(res, rej)
       })
     },
-    async getNearbyStations({commit, state}) {
-      let data = await fetch (state.baseUrlStations + "&originCoordLong=" + state.myPosition.long + "&originCoordLat=" + state.myPosition.lat)
+    async getNearbyStations({commit, state}, pos) {
+      let data = await fetch (state.baseUrlStations + "&originCoordLong=" + pos.longitude + "&originCoordLat=" + pos.latitude)
       .then(res => res.json())
 
       commit("saveStations", data.StopLocation)
@@ -56,6 +56,9 @@ export default new Vuex.Store({
       console.log(data)
 
       commit("showDepartures", data.Departure)
+    },
+    getTrans({commit}, value) {
+      commit("saveTrans", value)
     }
   }
 })

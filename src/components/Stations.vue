@@ -1,7 +1,8 @@
 <template>
-    <div class="stations">
+    <select class="stations">
+        <option value="">Närliggande Hållplatser</option>
         <Station v-for="station in nearbyStations" :key="station.id" v-bind:station="station"/>
-    </div>
+    </select>
 </template>
 
 <script>

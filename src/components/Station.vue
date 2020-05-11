@@ -1,7 +1,8 @@
 <template>
-    <div @click="dpDepartures" class="station">
-        <h1>{{station.name}}</h1>
-    </div>
+    <option @click="dpDepartures" class="station">
+        {{station.name}}
+    </option>
+
 </template>
 
 <script>
@@ -16,3 +17,7 @@ export default {
     }
 }
 </script>
+
+<style lang="scss" scoped>
+
+</style>
