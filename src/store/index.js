@@ -13,7 +13,8 @@ export default new Vuex.Store({
     },
     nearbyStations: [],
     departures: [],
-    transOptions: 240
+    transOptions: 240,
+    locationId: ""
   },
   mutations: {
     saveStations(state, stations) {
@@ -27,6 +28,9 @@ export default new Vuex.Store({
     saveTrans(state, value) {
       state.transOptions = value
       console.log(value)
+    },
+    saveStationId(state, id) {
+      state.locationId = id
     }
   },
   actions: {
@@ -49,8 +53,9 @@ export default new Vuex.Store({
 
       commit("saveStations", data.StopLocation)
     },
-    async getDepartures({commit, state}, id) {
-      let data = await fetch(state.baseUrlDepartures + "&id=" + id)
+    async getDepartures({commit, state}, time) {
+      console.log(time)
+      let data = await fetch(state.baseUrlDepartures + "&id=" + state.locationId + "&time=" + time)
       .then(res => res.json())
 
       console.log(data)
@@ -59,6 +64,9 @@ export default new Vuex.Store({
     },
     getTrans({commit}, value) {
       commit("saveTrans", value)
+    },
+    saveStation({commit}, id) {
+      commit("saveStationId", id)
     }
   }
 })

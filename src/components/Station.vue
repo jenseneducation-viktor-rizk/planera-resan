@@ -1,5 +1,5 @@
 <template>
-    <option @click="dpDepartures" class="station">
+    <option class="station" :value="station.id">
         {{station.name}}
     </option>
 
@@ -11,9 +11,7 @@ export default {
         station: Object
     },
     methods: {
-        dpDepartures() {
-            this.$store.dispatch("getDepartures", this.station.id)
-        }
+
     }
 }
 </script>
