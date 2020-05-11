@@ -1,26 +1,31 @@
 <template>
   <div class="home">
-    <GeoLocation />
-    <button @click="nearbyButton" >Get Nearby Stations</button>
+    <h1>Planera Resan</h1>
     <Stations />
+    <TransportOption />
     <Departures />
   </div>
 </template>
 
 <script>
-import GeoLocation from '@/components/GeoLocation.vue'
 import Stations from '@/components/Stations.vue'
+import TransportOption from '@/components/TransportOption.vue'
 import Departures from '@/components/Departures.vue'
 
 export default {
   name: 'Home',
   components: {
-    GeoLocation, Stations, Departures
+  Stations, TransportOption, Departures
   },
-  methods: {
-    nearbyButton() {
-      this.$store.dispatch("getNearbyStations")
-    }
-  }
 }
 </script>
+
+<style lang="scss" scoped>
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 500px;
+}
+</style>
