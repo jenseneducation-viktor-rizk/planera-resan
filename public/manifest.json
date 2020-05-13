@@ -1,0 +1,19 @@
+{
+    "name": "planera-resan",
+    "short_name": "Planera Resan",
+    "icons": [
+      {
+        "src": "./img/icons/450_tub.png",
+        "sizes": "450x450",
+        "type": "image/png"
+      },
+      {
+        "src": "./img/icons/1024_tub.png",
+        "sizes": "1024x1024",
+        "type": "image/png"
+      }
+    ],
+    "display": "standalone",
+    "background_color": "#000000",
+    "theme_color": "#4DBA87"
+  }
