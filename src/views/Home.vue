@@ -1,9 +1,11 @@
 <template>
   <div class="home">
-    <h1>Planera Resan</h1>
+    <h1>Planera Resa</h1>
     <Stations />
     <TransportOption />
     <vue-timepicker 
+    class="time"
+    hide-clear-button
     close-on-complete 
     v-model="time" 
     :placeholder="time"></vue-timepicker>
@@ -22,7 +24,7 @@ import VueTimepicker from 'vue2-timepicker/src/vue-timepicker.vue'
 export default {
   name: 'Home',
   data () {return{
-    time: ''
+    time: 'HH:MM'
   }},
   components: {
   Stations, TransportOption, Departures , VueTimepicker, SearchButton
@@ -44,12 +46,15 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 .home {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   max-width: 500px;
+}
+.display-time {
+  text-align: center;
 }
 </style>

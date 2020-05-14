@@ -1,10 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import stops from '../api/stops'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    allStops: [],
     baseUrlStations: "https://api.resrobot.se/v2/location.nearbystops?key=a467c024-e7c6-4821-bd29-c47689dd6a7b&format=json",
     baseUrlDepartures: "https://api.resrobot.se/v2/departureBoard?key=7c8fd7e3-9be1-49af-921f-ebd3ea3d61c8&format=json",
     myPosition: {
@@ -13,7 +15,7 @@ export default new Vuex.Store({
     },
     nearbyStations: [],
     departures: [],
-    transOptions: 240,
+    transOptions: 15,
     locationId: ""
   },
   mutations: {
@@ -28,9 +30,18 @@ export default new Vuex.Store({
     },
     saveStationId(state, id) {
       state.locationId = id
+    },
+    setStops(state, stops) {
+      console.log(stops)
+      state.allStops = stops
     }
   },
   actions: {
+    getAllStops ({ commit }) {
+      stops.getStops(stops => {
+        commit('setStops', stops)
+      })
+    },
     async getPos({dispatch}){
       try {
         let currentPos = await dispatch("fetchPos")

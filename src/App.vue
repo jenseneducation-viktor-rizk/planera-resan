@@ -7,7 +7,8 @@
 <script>
 export default {
   created() {
-    this.$store.dispatch("getPos")  
+    this.$store.dispatch("getPos")
+    this.$store.dispatch("getAllStops")
   }
 }
 </script>
