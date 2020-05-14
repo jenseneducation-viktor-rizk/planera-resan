@@ -17,7 +17,8 @@ export default new Vuex.Store({
     nearbyStations: [],
     departures: [],
     transOptions: 15,
-    locationId: ""
+    locationId: "",
+    trips: []
 
   },
   // getters: {
@@ -43,6 +44,10 @@ export default new Vuex.Store({
     },
     setStops(state, stops) {
       state.allStops = stops
+    },
+    showTrips(state, trips) {
+      console.log(trips)
+      state.trips = trips
     }
   },
   actions: {
@@ -76,10 +81,10 @@ export default new Vuex.Store({
       .then(res => res.json())
       commit("showDepartures", data.Departure)
     },
-    async getTrip({commit, state}, time, from, to) {
-      let data = await fetch(state.baseUrlTrip + "&originExtId=" + from + "&destExtId=" + to + "&time=" + time + "&products=" + state.transOptions)
+    async getTrip({commit, state}, trip) {
+      let data = await fetch(state.baseUrlTrip + "&originExtId=" + trip.fromId + "&destExtId=" + trip.toId + "&time=" + trip.time + "&products=" + state.transOptions)
       .then(res => res.json())
-      commit("showTrips", data)
+      commit("showTrips", data.Trip)
     },
     getTrans({commit}, value) {
       console.log(value)

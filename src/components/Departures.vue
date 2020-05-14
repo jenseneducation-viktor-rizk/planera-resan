@@ -1,6 +1,6 @@
 <template>
     <div class="departures">
-        <Departure v-for="(departure, index) in departures" :key="index" :departure="departure" />
+        <Departure v-for="(departure, index) in trips" :key="index" :departure="departure" />
     </div>
 </template>
 
@@ -12,8 +12,8 @@ export default {
         Departure
     },
     computed: {
-        departures() {
-            return this.$store.state.departures
+        trips() {
+            return this.$store.state.trips
         }
     }
 }
