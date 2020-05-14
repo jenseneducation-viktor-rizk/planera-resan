@@ -28,28 +28,28 @@ computed: {
     ,
     pendeltågVal() {
         if(this.pendeltåg){
-            return 16
+            return 1
         }else{
             return 0
         }
     },
     tunnelbanaVal() {
         if(this.tunnelbana){
-            return 32
+            return 2
         }else{
             return 0
         }
     },
     spårvagnVal() {
         if(this.spårvagn){
-            return 64
+            return 4
         }else{
             return 0
         }
     },
     bussVal() {
         if(this.buss){
-            return 128
+            return 8
         }else{
             return 0
         }
