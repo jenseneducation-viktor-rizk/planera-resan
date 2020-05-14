@@ -1,7 +1,8 @@
 <template>
   <div class="home">
     <h1>Planera Resa</h1>
-    <Stations />
+    <Search />
+    <!-- <Stations /> -->
     <TransportOption />
     <vue-timepicker 
     class="time"
@@ -15,7 +16,8 @@
 </template>
 
 <script>
-import Stations from '@/components/Stations.vue'
+import Search from '@/components/Search.vue'
+// import Stations from '@/components/Stations.vue'
 import TransportOption from '@/components/TransportOption.vue'
 import Departures from '@/components/Departures.vue'
 import SearchButton from '@/components/SearchButton.vue'
@@ -27,7 +29,7 @@ export default {
     time: 'HH:MM'
   }},
   components: {
-  Stations, TransportOption, Departures , VueTimepicker, SearchButton
+  Search, TransportOption, Departures , VueTimepicker, SearchButton
   },
   methods: {
     clickSearch() {
